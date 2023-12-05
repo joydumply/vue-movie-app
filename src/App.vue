@@ -1,26 +1,22 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
-import TheWelcome from './components/TheWelcome.vue';
+import { storeToRefs } from 'pinia';
+import { useMoviesStore } from './stores/movies';
+const store = useMoviesStore();
+
+
+
+const { test } = storeToRefs(store); // destructurisation with saving reactivity
 </script>
 
 <template>
-	<header>
-		<img
-			alt="Vue logo"
-			class="logo"
-			src="./assets/logo.svg"
-			width="125"
-			height="125"
-		/>
-
-		<div class="wrapper">
-			<HelloWorld msg="You did it!" />
-		</div>
-	</header>
-
-	<main>
-		<TheWelcome />
-	</main>
+	<h1>These are equal</h1>
+	{{ store.test }}
+	<hr />
+	{{ test }}
+	<hr />
+	<button @click="store.plusTest">Click for more</button>
+	<hr />
+	<button @click="store.getMovies">Click to console.log Movies</button>
 </template>
 
 <style scoped>
