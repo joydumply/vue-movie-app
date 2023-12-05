@@ -4,7 +4,7 @@ This is Movie App developing using Vue 3, Pinia and (I really don't know why) Vu
 
 Project will get movies from [OMDb API](https://www.omdbapi.com/)
 
-While it's developing this README will change with changelog of what have been done and what need to do
+While it's developing this README will change with **ChangeLog** of what have been done and **ToDo List** of what need to do
 
 ## ToDo List
 
