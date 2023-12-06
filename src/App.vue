@@ -1,9 +1,12 @@
 <script setup>
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useMoviesStore } from './stores/movies';
 const store = useMoviesStore();
 
-
+onMounted(() => {
+	store.fetchMovies();
+});
 
 const { test } = storeToRefs(store); // destructurisation with saving reactivity
 </script>

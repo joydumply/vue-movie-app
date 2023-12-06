@@ -8,4 +8,22 @@ const instance = axios.create({
 	},
 });
 
+function returnData(res) {
+	return res.data;
+}
+
+/**
+ * * Interceptors - хуки перехвата запроса/ответа (в данном случае ответа)
+ * * Сделано для того чтоб обработать объект response и привести к более удобному виду
+ */
+
+instance.interceptors.response.use(
+	(response) => {
+		return returnData(response);
+	},
+	(err) => {
+		return Promise.reject(error);
+	}
+);
+
 export default instance;
