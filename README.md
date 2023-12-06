@@ -15,6 +15,12 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Implement Movies List Component
 -   [x] Implement Background Poster Component
 -   [x] Implement Background Poster Component Functionality
+-   [ ] Pagination Component and Functionality
+-   [ ] Loader
+-   [ ] Remove Movie
+-   [ ] Search Movies
+-   [ ] Notifications
+-   [ ] Movie Info
 
 ## Changelog
 
