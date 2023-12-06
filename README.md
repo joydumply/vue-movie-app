@@ -13,10 +13,15 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Implement basic request using axion
 -   [x] Implement Movie Item Component
 -   [x] Implement Movies List Component
--   [ ] Implement Background Poster Component
--   [ ] Implement Background Poster Component Functionality
+-   [x] Implement Background Poster Component
+-   [x] Implement Background Poster Component Functionality
 
 ## Changelog
+
+### v 0.0.4
+
+-   Implemented Background Poster Component
+-   Implemented emit methods on mouseover to change background
 
 ### v 0.0.3
 

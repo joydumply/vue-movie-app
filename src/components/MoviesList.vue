@@ -9,7 +9,13 @@ const props = defineProps({
 	},
 });
 
+const emit = defineEmits(['changePoster']);
+
 const isMoviesListExist = ref(false);
+
+const onMouseOver = (poster) => {
+	emit('changePoster', poster);
+};
 watch(
 	() => props.list,
 	(newValue, oldValue) => {
@@ -23,7 +29,7 @@ watch(
 </script>
 
 <template>
-	<BContainer>
+	<BContainer class="movie-list-container">
 		<h3 class="list-title">IMDb Top 250</h3>
 		<BRow>
 			<template v-if="isMoviesListExist">
@@ -32,7 +38,10 @@ watch(
 					v-for="(movie, key) in list"
 					:key="key"
 				>
-					<MovieItem :movie="movie" />
+					<MovieItem
+						:movie="movie"
+						@mouseover="onMouseOver(movie.Poster)"
+					/>
 				</BCol>
 			</template>
 			<template v-else> Empty list </template>
@@ -40,9 +49,13 @@ watch(
 	</BContainer>
 </template>
 <style lang="scss" scoped>
+.movie-list-container {
+	padding-top: 50px;
+}
 .list-title {
 	font-size: 50px;
 	margin-bottom: 50px;
-	text-align: center;
+	color: #fff;
+	// text-align: center;
 }
 </style>
