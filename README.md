@@ -8,13 +8,13 @@ While it's developing this README will change with **Changelog** of what have be
 
 ## ToDo List
 
--   [x] Implement basic Store
--   [x] Implement env variables
--   [x] Implement basic request using axion
--   [x] Implement Movie Item Component
--   [x] Implement Movies List Component
--   [x] Implement Background Poster Component
--   [x] Implement Background Poster Component Functionality
+-   [x] Basic Store
+-   [x] Env variables
+-   [x] Basic request using axion
+-   [x] Movie Item Component
+-   [x] Movies List Component
+-   [x] Background Poster Component
+-   [x] Background Poster Component Functionality
 -   [ ] Pagination Component and Functionality
 -   [ ] Loader
 -   [ ] Remove Movie
