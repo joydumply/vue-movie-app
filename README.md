@@ -4,17 +4,24 @@ This is Movie App developing using Vue 3, Pinia and (I really don't know why) Vu
 
 Project will get movies from [OMDb API](https://www.omdbapi.com/)
 
-While it's developing this README will change with **ChangeLog** of what have been done and **ToDo List** of what need to do
+While it's developing this README will change with **Changelog** of what have been done and **ToDo List** of what need to do
 
 ## ToDo List
 
 -   [x] Implement basic Store
 -   [x] Implement env variables
 -   [x] Implement basic request using axion
--   [ ] Implement Movie Item Component
--   [ ] Implement Movies List Component
+-   [x] Implement Movie Item Component
+-   [x] Implement Movies List Component
+-   [ ] Implement Background Poster Component
+-   [ ] Implement Background Poster Component Functionality
 
 ## Changelog
+
+### v 0.0.3
+
+-   Implemented Movie List Component
+-   Implemented Movie Item Component
 
 ### v 0.0.2
 
