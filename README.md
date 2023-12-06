@@ -8,12 +8,20 @@ While it's developing this README will change with **ChangeLog** of what have be
 
 ## ToDo List
 
--   [ ] Implement basic Store
--   [ ] Implement env variables
--   [ ] Implement basic request using axion
+-   [x] Implement basic Store
+-   [x] Implement env variables
+-   [x] Implement basic request using axion
+-   [ ] Implement Movie Item Component
+-   [ ] Implement Movies List Component
 
 ## Changelog
 
-### v 0.0.0.1
+### v 0.0.2
+
+-   Implemented basic store Movies
+-   Implemented fetching Movies from OMDb API via Axios
+-   Implemented env variables using vite
+
+### v 0.0.1
 
 -   Installed dependencies
