@@ -7,11 +7,17 @@ const props = defineProps({
 	},
 });
 
+const emit = defineEmits(['emitRemoveMovie']);
+
 const posterBg = computed(() => {
 	return {
 		'background-image': `url(${props.movie.Poster})`,
 	};
 });
+
+const removeMovie = () => {
+	emit('emitRemoveMovie', props.movie.imdbID, props.movie.Title);
+};
 </script>
 
 <template>
@@ -37,6 +43,7 @@ const posterBg = computed(() => {
 					<BButton
 						block="true"
 						variant="outline-light"
+						@click="removeMovie"
 						>Remove</BButton
 					>
 				</div>

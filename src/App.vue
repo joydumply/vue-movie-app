@@ -1,8 +1,8 @@
 <script setup>
 import { computed, onMounted, ref, toRefs } from 'vue';
 import { useMoviesStore } from './stores/movies';
-import { useLoaderStore } from './stores/loader';
 import Loader from './components/Loader.vue';
+import Header from '@/components/Header.vue';
 import MoviesList from './components/MoviesList.vue';
 import PosterBg from './components/PosterBg.vue';
 import MoviesPagintion from './components/MoviesPagintion.vue';
@@ -22,7 +22,7 @@ const getUrlQueryParams = async () => {
 };
 
 const moviesData = toRefs(moviesStore);
-const moviesList = moviesData.movies;
+const moviesList = ref(moviesData.movies);
 
 const posterBg = ref('');
 
@@ -55,6 +55,24 @@ const onPageChanged = (page) => {
 	moviesStore.fetchMovies();
 };
 
+const onRemoveMovie = (id) => {
+	moviesStore.removeMovie(id);
+};
+
+const onSearchChanged = (query) => {
+	// console.log('App search');
+	// console.log(query.value);
+	const query_value = query.value;
+	if (query_value.length > 2) {
+		moviesStore.isSearchActive = true;
+		moviesStore.searchMovie(query.value);
+	}
+	if (query.value.length == 0) {
+		moviesStore.fetchMovies();
+		moviesStore.isSearchActive = false;
+	}
+};
+
 onMounted(() => {
 	getUrlQueryParams().then((query) => {
 		if (query.page) {
@@ -67,11 +85,13 @@ onMounted(() => {
 </script>
 
 <template>
+	<Header @searchChanged="onSearchChanged" />
 	<Loader />
 	<PosterBg :poster="posterBg" />
 	<MoviesList
 		:list="moviesList"
 		@changePoster="onChangePoster"
+		@removeMovie="onRemoveMovie"
 	/>
 	{{ moviesTotal.value }}
 	<MoviesPagintion
