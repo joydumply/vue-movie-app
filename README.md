@@ -15,7 +15,7 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Movies List Component
 -   [x] Background Poster Component
 -   [x] Background Poster Component Functionality
--   [ ] Pagination Component and Functionality
+-   [x] Pagination Component and Functionality
 -   [ ] Loader
 -   [ ] Remove Movie
 -   [ ] Search Movies
@@ -23,6 +23,12 @@ While it's developing this README will change with **Changelog** of what have be
 -   [ ] Movie Info
 
 ## Changelog
+
+### v 0.0.5
+
+-   Implemented pagination with Bootstrap Pagination Component
+-   Implemented pagination routing
+-   Implemented changing pagination if query was changed / page loaded with query param
 
 ### v 0.0.4
 
