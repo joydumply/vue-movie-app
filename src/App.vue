@@ -1,6 +1,5 @@
 <script setup>
-import { computed, onMounted, onUpdated, ref, toRefs, watch } from 'vue';
-import { storeToRefs } from 'pinia';
+import { computed, onMounted, ref, toRefs } from 'vue';
 import { useMoviesStore } from './stores/movies';
 import MoviesList from './components/MoviesList.vue';
 import PosterBg from './components/PosterBg.vue';
@@ -12,10 +11,12 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
+/**
+ * * Needed async function to get Query Parameters for onMounted Lifecycle hook
+ */
 const getUrlQueryParams = async () => {
 	await router.isReady();
-	console.log(route.query);
-	return route.query
+	return route.query;
 };
 
 const moviesData = toRefs(moviesStore);
@@ -53,34 +54,14 @@ const onPageChanged = (page) => {
 };
 
 onMounted(() => {
-	moviesStore.fetchMovies();
-
-	// const pageQuery = getUrlQueryParams();
-
-	getUrlQueryParams().then((v) => {
-		console.log(v);
+	getUrlQueryParams().then((query) => {
+		if (query.page) {
+			onPageChanged(Number(query.page));
+		} else {
+			moviesStore.fetchMovies();
+		}
 	});
-
-	// if (route.query.page) {
-	// 	console.log('I am here');
-	// 	currentPage.value = route.query.page;
-	// 	moviesStore.fetchMovies();
-	// }
-	// console.log(router.currentRoute.query);
-	// if (router.currentRoute.query) {
-	// 	console.log('I am here router');
-
-	// 	currentPage.value = route.query.page;
-	// 	moviesStore.fetchMovies();
-	// }
 });
-
-watch(
-	() => route.query,
-	(newQuery, oldQuery) => {
-		console.log('New query parameters:', newQuery);
-	}
-);
 </script>
 
 <template>
