@@ -1,6 +1,8 @@
 import IDs from '@/stores/mock/omdb_top250';
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
+import { useLoaderStore } from '@/stores/loader';
+
 import axios from '@/plugins/axios';
 
 function serializeMoviesResponse(movies) {
@@ -11,6 +13,9 @@ function serializeMoviesResponse(movies) {
 }
 
 export const useMoviesStore = defineStore('movies', () => {
+	// using Loader store inside Movies Store (nested store)
+	const loaderStore = useLoaderStore();
+
 	// state
 	const top250IDs = ref(IDs);
 	const moviesPerPage = ref(12);
@@ -26,6 +31,7 @@ export const useMoviesStore = defineStore('movies', () => {
 
 	const fetchMovies = async () => {
 		try {
+			loaderStore.toggleLoader(true);
 			const from = currentPage.value * moviesPerPage.value - moviesPerPage.value;
 			const to = currentPage.value * moviesPerPage.value;
 			const moviesToFetch = slicedIDs(from, to);
@@ -35,6 +41,11 @@ export const useMoviesStore = defineStore('movies', () => {
 			movies.value = response_movies;
 		} catch (err) {
 			console.error(err);
+		} finally {
+			// used timeout to see Loader :)
+			setTimeout(() => {
+				loaderStore.toggleLoader(false);
+			}, 500);
 		}
 	};
 

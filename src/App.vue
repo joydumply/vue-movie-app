@@ -1,6 +1,8 @@
 <script setup>
 import { computed, onMounted, ref, toRefs } from 'vue';
 import { useMoviesStore } from './stores/movies';
+import { useLoaderStore } from './stores/loader';
+import Loader from './components/Loader.vue';
 import MoviesList from './components/MoviesList.vue';
 import PosterBg from './components/PosterBg.vue';
 import MoviesPagintion from './components/MoviesPagintion.vue';
@@ -65,6 +67,7 @@ onMounted(() => {
 </script>
 
 <template>
+	<Loader />
 	<PosterBg :poster="posterBg" />
 	<MoviesList
 		:list="moviesList"
