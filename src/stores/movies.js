@@ -21,6 +21,7 @@ export const useMoviesStore = defineStore('movies', () => {
 	const moviesPerPage = ref(12);
 	const currentPage = ref(1);
 	const movies = ref({});
+	const isSearchActive = ref(false);
 
 	// getter
 	const getMoviesListLength = computed(() => Object.keys(top250IDs.value).length);
@@ -49,5 +50,43 @@ export const useMoviesStore = defineStore('movies', () => {
 		}
 	};
 
-	return { top250IDs, moviesPerPage, currentPage, movies, getMoviesListLength, fetchMovies };
+	const removeMovie = (id) => {
+		const index = top250IDs.value.findIndex((item) => item === id);
+		if (index !== -1) {
+			top250IDs.value.splice(index, 1);
+			const moviesCopy = { ...movies.value };
+			delete moviesCopy[id];
+			movies.value = moviesCopy;
+		}
+	};
+
+	const searchMovie = async (query) => {
+		try {
+			loaderStore.toggleLoader(true);
+			const response = await axios.get(`/?s=${query}`);
+
+			if (response.Error) {
+				throw Error(response.Error);
+			}
+
+			const response_movies = serializeMoviesResponse(response.Search);
+			movies.value = response_movies;
+		} catch (err) {
+			console.error(err);
+		} finally {
+			loaderStore.toggleLoader(false);
+		}
+	};
+
+	return {
+		top250IDs,
+		moviesPerPage,
+		currentPage,
+		movies,
+		isSearchActive,
+		getMoviesListLength,
+		fetchMovies,
+		removeMovie,
+		searchMovie,
+	};
 });

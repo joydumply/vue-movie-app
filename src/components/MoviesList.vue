@@ -1,20 +1,42 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
 import MovieItem from './MovieItem.vue';
+import { useMoviesStore } from '../stores/movies';
 
 const props = defineProps({
 	list: {
 		type: Object,
 		default: () => ({}),
 	},
+	moviesListTitle: {
+		type: String,
+		default: '',
+	},
 });
+const modal = ref(false);
+const modalMovieName = ref('');
+const modalMovidId = ref(null);
+const moviesStore = useMoviesStore();
+const emit = defineEmits(['changePoster', 'removeMovie']);
 
-const emit = defineEmits(['changePoster']);
+const listTitle = computed(() => {
+	return moviesStore.isSearchActive ? 'Search Result' : 'IMDb Top 250';
+});
 
 const isMoviesListExist = ref(false);
 
 const onMouseOver = (poster) => {
 	emit('changePoster', poster);
+};
+
+const onRemoveMovie = (id, title) => {
+	modalMovieName.value = title;
+	modalMovidId.value = id;
+	modal.value = true;
+};
+const confirmRemoveMovie = () => {
+	emit('removeMovie', modalMovidId.value);
 };
 watch(
 	() => props.list,
@@ -29,8 +51,15 @@ watch(
 </script>
 
 <template>
+	<BModal
+		v-model="modal"
+		title="Remove Confirmation"
+		@ok="confirmRemoveMovie"
+	>
+		Do you want to remove <strong>{{ modalMovieName }}</strong> from the list?
+	</BModal>
 	<BContainer class="movie-list-container">
-		<h3 class="list-title">IMDb Top 250</h3>
+		<h3 class="list-title">{{ listTitle }}</h3>
 		<BRow>
 			<template v-if="isMoviesListExist">
 				<BCol
@@ -41,6 +70,7 @@ watch(
 					<MovieItem
 						:movie="movie"
 						@mouseover="onMouseOver(movie.Poster)"
+						@emitRemoveMovie="onRemoveMovie"
 					/>
 				</BCol>
 			</template>
