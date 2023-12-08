@@ -16,13 +16,17 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Background Poster Component
 -   [x] Background Poster Component Functionality
 -   [x] Pagination Component and Functionality
--   [ ] Loader
+-   [x] Loader
 -   [ ] Remove Movie
 -   [ ] Search Movies
 -   [ ] Notifications
 -   [ ] Movie Info
 
 ## Changelog
+
+### v 0.0.6
+
+-   Implemented Loader
 
 ### v 0.0.5
 
