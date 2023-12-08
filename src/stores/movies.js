@@ -18,7 +18,7 @@ export const useMoviesStore = defineStore('movies', () => {
 	const movies = ref({});
 
 	// getter
-	const getMovies = computed(() => movies);
+	const getMoviesListLength = computed(() => Object.keys(top250IDs.value).length);
 
 	const slicedIDs = (from, to) => top250IDs.value.slice(from, to);
 
@@ -38,5 +38,5 @@ export const useMoviesStore = defineStore('movies', () => {
 		}
 	};
 
-	return { top250IDs, moviesPerPage, currentPage, movies, getMovies, fetchMovies };
+	return { top250IDs, moviesPerPage, currentPage, movies, getMoviesListLength, fetchMovies };
 });
