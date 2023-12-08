@@ -17,12 +17,19 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Background Poster Component Functionality
 -   [x] Pagination Component and Functionality
 -   [x] Loader
--   [ ] Remove Movie
--   [ ] Search Movies
+-   [x] Remove Movie
+-   [x] Search Movies
 -   [ ] Notifications
 -   [ ] Movie Info
 
 ## Changelog
+
+### v 0.0.7
+
+Agent commit
+
+-   Implemented Remove Movie from list functionality
+-   Implemented Search movie by title
 
 ### v 0.0.6
 
