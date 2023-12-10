@@ -6,6 +6,7 @@ import Header from '@/components/Header.vue';
 import MoviesList from './components/MoviesList.vue';
 import PosterBg from './components/PosterBg.vue';
 import MoviesPagintion from './components/MoviesPagintion.vue';
+import Notification from './components/Notification.vue';
 const moviesStore = useMoviesStore();
 
 import { useRoute, useRouter } from 'vue-router';
@@ -60,14 +61,13 @@ const onRemoveMovie = (id) => {
 };
 
 const onSearchChanged = (query) => {
-	// console.log('App search');
-	// console.log(query.value);
-	const query_value = query.value;
+	const query_value = query;
+	// const query_value = query.value;
 	if (query_value.length > 2) {
 		moviesStore.isSearchActive = true;
-		moviesStore.searchMovie(query.value);
+		moviesStore.searchMovie(query_value);
 	}
-	if (query.value.length == 0) {
+	if (query_value.length == 0) {
 		moviesStore.fetchMovies();
 		moviesStore.isSearchActive = false;
 	}
@@ -86,6 +86,7 @@ onMounted(() => {
 
 <template>
 	<Header @searchChanged="onSearchChanged" />
+	<BToaster />
 	<Loader />
 	<PosterBg :poster="posterBg" />
 	<MoviesList
@@ -100,6 +101,7 @@ onMounted(() => {
 		:perPage="moviesPerPage"
 		@pageChanged="onPageChanged"
 	/>
+	<Notification />
 </template>
 
 <style>

@@ -2,6 +2,7 @@ import IDs from '@/stores/mock/omdb_top250';
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import { useLoaderStore } from '@/stores/loader';
+import { useNotificationStore } from '@/stores/notification';
 
 import axios from '@/plugins/axios';
 
@@ -15,6 +16,7 @@ function serializeMoviesResponse(movies) {
 export const useMoviesStore = defineStore('movies', () => {
 	// using Loader store inside Movies Store (nested store)
 	const loaderStore = useLoaderStore();
+	const notificationStore = useNotificationStore();
 
 	// state
 	const top250IDs = ref(IDs);
@@ -73,6 +75,11 @@ export const useMoviesStore = defineStore('movies', () => {
 			movies.value = response_movies;
 		} catch (err) {
 			console.error(err);
+			notificationStore.show_toast_message({
+				msg: 'Movie is not found',
+				title: 'Message',
+				variant: 'danger',
+			});
 		} finally {
 			loaderStore.toggleLoader(false);
 		}

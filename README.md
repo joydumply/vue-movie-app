@@ -19,10 +19,14 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Loader
 -   [x] Remove Movie
 -   [x] Search Movies
--   [ ] Notifications
+-   [x] Notifications
 -   [ ] Movie Info
 
 ## Changelog
+
+### v 0.0.8
+
+-   Implemented Notifications
 
 ### v 0.0.7
 

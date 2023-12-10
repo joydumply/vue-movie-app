@@ -26,9 +26,19 @@ export default {
 	props: {},
 	setup(props, { emit }) {
 		const searchInputValue = ref('');
+		let timeoutId = null;
+		const delayedEmit = (value) => {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
+			timeoutId = setTimeout(() => {
+				emit('searchChanged', value);
+			}, 300);
+		};
 
-		watch(searchInputValue, () => {
-			emit('searchChanged', searchInputValue);
+		watch(searchInputValue, (newValue) => {
+			console.log(newValue);
+			delayedEmit(newValue);
 		});
 
 		return { searchInputValue };
