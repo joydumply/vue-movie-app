@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import MovieItem from './MovieItem.vue';
 import { useMoviesStore } from '../stores/movies';
-
+import { useNotificationStore } from '@/stores/notification';
 const props = defineProps({
 	list: {
 		type: Object,
@@ -19,7 +19,7 @@ const modalMovieName = ref('');
 const modalMovidId = ref(null);
 const moviesStore = useMoviesStore();
 const emit = defineEmits(['changePoster', 'removeMovie']);
-
+const notificationStore = useNotificationStore();
 const listTitle = computed(() => {
 	return moviesStore.isSearchActive ? 'Search Result' : 'IMDb Top 250';
 });
@@ -37,6 +37,11 @@ const onRemoveMovie = (id, title) => {
 };
 const confirmRemoveMovie = () => {
 	emit('removeMovie', modalMovidId.value);
+	notificationStore.show_toast_message({
+		msg: 'Successfully removed',
+		title: 'Message',
+		variant: 'success',
+	});
 };
 watch(
 	() => props.list,
