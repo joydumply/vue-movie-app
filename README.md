@@ -20,9 +20,16 @@ While it's developing this README will change with **Changelog** of what have be
 -   [x] Remove Movie
 -   [x] Search Movies
 -   [x] Notifications
--   [ ] Movie Info
+-   [x] Movie Info
 
 ## Changelog
+
+### v 1.0 :heart_eyes: Release :heart_eyes:
+
+- Implemented Movie Info Modal
+
+- Replaced Watch(ers) by Computed props
+
 
 ### v 0.0.8
 

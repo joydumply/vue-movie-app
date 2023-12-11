@@ -7,7 +7,7 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['emitRemoveMovie']);
+const emit = defineEmits(['emitRemoveMovie', 'emitShowInfoModal']);
 
 const posterBg = computed(() => {
 	return {
@@ -17,6 +17,10 @@ const posterBg = computed(() => {
 
 const removeMovie = () => {
 	emit('emitRemoveMovie', props.movie.imdbID, props.movie.Title);
+};
+
+const showInfoModal = () => {
+	emit('emitShowInfoModal');
 };
 </script>
 
@@ -36,7 +40,8 @@ const removeMovie = () => {
 					<BButton
 						block
 						variant="outline-light"
-						>Edit</BButton
+						@click="showInfoModal"
+						>Info</BButton
 					>
 				</div>
 				<div class="col">

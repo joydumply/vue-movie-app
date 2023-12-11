@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<BButton @click="showNotification()"> Click </BButton>
-	</div>
+	<div></div>
 </template>
 <script>
 import { useToast } from 'bootstrap-vue-next';
@@ -15,8 +13,8 @@ export default {
 		const { show } = useToast();
 		const showNotification = ({ variant = 'dark', message = null, title = null }) => {
 			show(message, {
-				variant: variant,
-				title: title,
+				variant,
+				title,
 			});
 		};
 		watch(messagePool, (newValue, oldValue) => {
