@@ -14,44 +14,44 @@ While it's developing this README will change with **Changelog** of what have be
 
 -   Replaced Watch(ers) by Computed props
 
-### v 0.0.8
+### v 0.8
 
 -   Implemented Notifications
 
-### v 0.0.7
+### v 0.7
 
 Agent commit
 
 -   Implemented Remove Movie from list functionality
 -   Implemented Search movie by title
 
-### v 0.0.6
+### v 0.6
 
 -   Implemented Loader
 
-### v 0.0.5
+### v 0.5
 
 -   Implemented pagination with Bootstrap Pagination Component
 -   Implemented pagination routing
 -   Implemented changing pagination if query was changed / page loaded with query param
 
-### v 0.0.4
+### v 0.4
 
 -   Implemented Background Poster Component
 -   Implemented emit methods on mouseover to change background
 
-### v 0.0.3
+### v 0.3
 
 -   Implemented Movie List Component
 -   Implemented Movie Item Component
 
-### v 0.0.2
+### v 0.2
 
 -   Implemented basic store Movies
 -   Implemented fetching Movies from OMDb API via Axios
 -   Implemented env variables using vite
 
-### v 0.0.1
+### v 0.1
 
 -   Installed dependencies (Hello World!)
 
