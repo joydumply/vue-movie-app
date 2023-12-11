@@ -24,12 +24,11 @@ While it's developing this README will change with **Changelog** of what have be
 
 ## Changelog
 
-### v 1.0 :heart_eyes: Release :heart_eyes:
+### v 1.0 Release
 
-- Implemented Movie Info Modal
+-   Implemented Movie Info Modal
 
-- Replaced Watch(ers) by Computed props
-
+-   Replaced Watch(ers) by Computed props
 
 ### v 0.0.8
 
