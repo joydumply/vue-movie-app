@@ -2,8 +2,10 @@
 import { computed, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import MovieItem from './MovieItem.vue';
+import MovieInfoModalContent from '@/components/MovieInfoModalContent.vue';
 import { useMoviesStore } from '../stores/movies';
 import { useNotificationStore } from '@/stores/notification';
+import MovieInfoModelContentVue from './MovieInfoModalContent.vue';
 const props = defineProps({
 	list: {
 		type: Object,
@@ -15,16 +17,21 @@ const props = defineProps({
 	},
 });
 const modal = ref(false);
+const modalMovieInfo = ref(false);
 const modalMovieName = ref('');
 const modalMovidId = ref(null);
+const selectedMovieId = ref('');
+
+const selectedMovie = computed(() =>
+	selectedMovieId.value ? props.list[selectedMovieId.value] : null
+);
+
 const moviesStore = useMoviesStore();
 const emit = defineEmits(['changePoster', 'removeMovie']);
 const notificationStore = useNotificationStore();
 const listTitle = computed(() => {
 	return moviesStore.isSearchActive ? 'Search Result' : 'IMDb Top 250';
 });
-
-const isMoviesListExist = ref(false);
 
 const onMouseOver = (poster) => {
 	emit('changePoster', poster);
@@ -43,16 +50,33 @@ const confirmRemoveMovie = () => {
 		variant: 'success',
 	});
 };
-watch(
-	() => props.list,
-	(newValue, oldValue) => {
-		if (newValue && Object.keys(newValue).length > 0) {
-			isMoviesListExist.value = true;
-		} else {
-			isMoviesListExist.value = false;
-		}
-	}
-);
+
+const isMoviesListExist = computed(() => Object.keys(props.list).length);
+
+const onShowInfoModal = (id) => {
+	console.log(id);
+	selectedMovieId.value = id;
+	modalMovieInfo.value = true;
+};
+
+const closeMovieModal = () => {
+	modalMovieInfo.value = false;
+};
+
+/**
+ * ! Watchers are bad practice
+ */
+// const isMoviesListExist = ref(false);
+// watch(
+// 	() => props.list,
+// 	(newValue, oldValue) => {
+// 		if (newValue && Object.keys(newValue).length > 0) {
+// 			isMoviesListExist.value = true;
+// 		} else {
+// 			isMoviesListExist.value = false;
+// 		}
+// 	}
+// );
 </script>
 
 <template>
@@ -76,11 +100,28 @@ watch(
 						:movie="movie"
 						@mouseover="onMouseOver(movie.Poster)"
 						@emitRemoveMovie="onRemoveMovie"
-					/>
+						@emitShowInfoModal="onShowInfoModal(movie.imdbID)"
+					>
+						<div><span>I am in component</span></div>
+					</MovieItem>
 				</BCol>
 			</template>
 			<template v-else> Empty list </template>
 		</BRow>
+
+		<BModal
+			contentClass="movie-modal-content"
+			v-model="modalMovieInfo"
+			hideHeader
+			hideFooter
+			size="xl"
+		>
+			<MovieInfoModalContent
+				v-if="selectedMovie"
+				:movie="selectedMovie"
+				@emitCloseMovieModal="closeMovieModal"
+			/>
+		</BModal>
 	</BContainer>
 </template>
 <style lang="scss" scoped>

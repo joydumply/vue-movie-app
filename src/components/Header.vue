@@ -13,6 +13,7 @@
 						class="me-2"
 						placeholder="Search"
 						v-model="searchInputValue"
+						@input="onSeachInputChange"
 					/>
 				</BNavForm>
 			</BContainer>
@@ -20,7 +21,7 @@
 	</div>
 </template>
 <script>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 
 export default {
 	props: {},
@@ -35,13 +36,21 @@ export default {
 				emit('searchChanged', value);
 			}, 300);
 		};
+		const onSeachInputChange = (value) => {
+			delayedEmit(value);
+		};
 
-		watch(searchInputValue, (newValue) => {
-			console.log(newValue);
-			delayedEmit(newValue);
-		});
+		/**
+		 * ! Removed Watch
+		 * * Watch will fire if searchInputValue will change somehow. I've changed to @input event to know exactly that user has been type it
+		 */
 
-		return { searchInputValue };
+		// watch(searchInputValue, (newValue) => {
+		// 	console.log(newValue);
+		// 	delayedEmit(newValue);
+		// });
+
+		return { searchInputValue, onSeachInputChange };
 	},
 };
 </script>
