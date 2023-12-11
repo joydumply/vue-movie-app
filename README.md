@@ -6,22 +6,6 @@ Project will get movies from [OMDb API](https://www.omdbapi.com/)
 
 While it's developing this README will change with **Changelog** of what have been done and **ToDo List** of what need to do
 
-## ToDo List
-
--   [x] Basic Store
--   [x] Env variables
--   [x] Basic request using axion
--   [x] Movie Item Component
--   [x] Movies List Component
--   [x] Background Poster Component
--   [x] Background Poster Component Functionality
--   [x] Pagination Component and Functionality
--   [x] Loader
--   [x] Remove Movie
--   [x] Search Movies
--   [x] Notifications
--   [x] Movie Info
-
 ## Changelog
 
 ### v 1.0 Release
@@ -70,3 +54,19 @@ Agent commit
 ### v 0.0.1
 
 -   Installed dependencies (Hello World!)
+
+## ToDo List
+
+-   [x] Basic Store
+-   [x] Env variables
+-   [x] Basic request using axion
+-   [x] Movie Item Component
+-   [x] Movies List Component
+-   [x] Background Poster Component
+-   [x] Background Poster Component Functionality
+-   [x] Pagination Component and Functionality
+-   [x] Loader
+-   [x] Remove Movie
+-   [x] Search Movies
+-   [x] Notifications
+-   [x] Movie Info
